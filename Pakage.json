@@ -1,0 +1,40 @@
+{
+  "name": "ghost-browser",
+  "version": "1.0.0",
+  "description": "Ghost Browser - Ad Free, fast browser for Kenya",
+  "main": "main.js",
+  "author": "mickey076gog-svg",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "electron": "electron .",
+    "dist:win": "next build && electron-builder --win",
+    "android": "npx cap sync && npx cap open android"
+  },
+  "dependencies": {
+    "next": "14.2.0",
+    "react": "18.3.0",
+    "react-dom": "18.3.0",
+    "@cliqz/adblocker-electron": "1.34.0",
+    "cross-fetch": "4.0.0",
+    "electron-serve": "1.1.0"
+  },
+  "devDependencies": {
+    "electron": "28.0.0",
+    "electron-builder": "24.9.1"
+  },
+  "build": {
+    "appId": "com.mickey.ghostbrowser",
+    "productName": "Ghost Browser",
+    "icon": "icon.png",
+    "files": [
+      "out/**/*",
+      "main.js",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
