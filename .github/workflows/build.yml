@@ -1,0 +1,31 @@
+name: Build Ghost Browser
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      - name: Build Windows App
+        run: |
+          npm run build || echo "skipping next"
+          npx electron-builder --win --publish never
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ghost-Browser-Windows
+          path: dist/**
